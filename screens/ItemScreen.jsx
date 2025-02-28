@@ -8,7 +8,7 @@ const ItemScreen = ({ route }) => {
     return (
         <View>
             <Text>
-                {route.name}
+                uuu
             </Text>
         </View>
     )

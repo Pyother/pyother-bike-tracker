@@ -1,6 +1,17 @@
 // * React and Redux:
 import React from 'react';
+import { View, Text } from 'react-native';
 
 // * Styles:
 
-import 
+const HistoryScreen = () => {
+    return (
+        <View>
+            <Text>
+                History
+            </Text>
+        </View>
+    )
+}
+
+export default HistoryScreen;

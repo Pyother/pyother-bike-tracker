@@ -12,6 +12,9 @@ import store from '../store/store';
 import HomeScreen from '../screens/HomeScreen';
 import ItemScreen from '../screens/ItemScreen';
 
+// * Components:
+import Header from '../components/Header';
+
 const Stack = createNativeStackNavigator();
 
 const App = () => {
@@ -21,12 +24,12 @@ const App = () => {
                 <Stack.Screen
                     name="Home"
                     component={HomeScreen}
-                    options={{ title: 'Home' }}
+                    options={{ header: () => <Header title="Home" /> }}
                 />
                 <Stack.Screen
                     name="Item"
                     component={ItemScreen}
-                    options={{ title: 'Item' }}
+                    options={{ header: () => <Header title="Item" backPressEnabled/> }}
                 />
             </Stack.Navigator>
         </Provider>

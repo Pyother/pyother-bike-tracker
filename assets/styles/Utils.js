@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import Vars from '../../constants/Vars';
 
 const stylesUtils = StyleSheet.create({
     center: {
@@ -6,11 +7,14 @@ const stylesUtils = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-    padding1em: {
-        padding: 20
+    padding15: {
+        padding: 15
     },
     title: {
         fontSize: 'large'
+    },
+    iconButton: {
+        width: 'fit-content'
     }
 });
 
