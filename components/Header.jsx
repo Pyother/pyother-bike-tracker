@@ -4,9 +4,9 @@ import { View, Text, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 // * Styles and UI:
-import { Button } from '@rneui/themed';
-import { Icon } from '@rneui/themed';
+import IconButton from './IconButton';
 import stylesUtils from '../assets/styles/Utils';
+import { constants } from '../constants/Constants';
 
 const Header = ({ title, backPressEnabled }) => {
 
@@ -14,24 +14,17 @@ const Header = ({ title, backPressEnabled }) => {
 
     return (
         <View style={styles.header}>
-            <Button 
-                color="inherit"
-                onPress={ backPressEnabled ? () => navigation.navigate('Home') : null }   
-                style={stylesUtils.iconButton}
-            >
-                <Icon 
-                    name='arrow-back'
-                    color={ backPressEnabled ? '#000000' : 'transparent' }
-                />
-            </Button>
+            <IconButton 
+                onClick={() => navigation.navigate('Home')}  
+                enabled={backPressEnabled}
+                iconName="arrow-back"
+            />
             <Text style={styles.title}>{title}</Text>
-            <Button 
-                color="inherit"
-                onPress={() => {}}  
-                style={stylesUtils.iconButton}
-            >
-                <Icon name="menu"/>
-            </Button>
+            <IconButton 
+                onClick={() => {}}  
+                enabled
+                iconName="menu"
+            />
         </View>
     );
 };
@@ -41,7 +34,8 @@ const styles = StyleSheet.create({
         display: 'flex',
         alignItems: 'center',
         flexDirection: 'row',
-        padding: 15
+        padding: 15,
+        backgroundColor: constants.backgroundTertiary,
     },
     title: {
         fontSize: 20,

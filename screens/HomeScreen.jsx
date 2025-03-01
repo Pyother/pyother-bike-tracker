@@ -11,7 +11,8 @@ import stylesLayout from '../assets/styles/Layout';
 const HomeScreen = () => {
     return (
         <View style={stylesLayout.screenContainer}>
-            <Text>Home Screen</Text>
+            <Text style={stylesUtils.subtitle}>New activity</Text>
+            <Text style={stylesUtils.subtitle}>History</Text>
         </View>
     )
 }
