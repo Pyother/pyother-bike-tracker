@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 // * Styles and UI:
-import IconButton from './IconButton';
+import StyledIconButton from './styledComponents/StyledIconButton';
 import stylesUtils from '../assets/styles/Utils';
 import { constants } from '../constants/Constants';
 
@@ -14,13 +14,13 @@ const Header = ({ title, backPressEnabled }) => {
 
     return (
         <View style={styles.header}>
-            <IconButton 
+            <StyledIconButton 
                 onClick={() => navigation.navigate('Home')}  
                 enabled={backPressEnabled}
                 iconName="arrow-back"
             />
             <Text style={styles.title}>{title}</Text>
-            <IconButton 
+            <StyledIconButton 
                 onClick={() => {}}  
                 enabled
                 iconName="menu"

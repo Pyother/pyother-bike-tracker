@@ -4,9 +4,10 @@ import { View } from 'react-native';
 
 // * Styles and UI:
 import { Button, Icon } from '@rneui/themed';
-import stylesUtils from '../assets/styles/Utils';
+import { constants } from '../../constants/Constants';
+import stylesUtils from '../../assets/styles/Utils';
 
-const IconButton = ({ onClick, enabled, iconName }) => {
+const StyledIconButton = ({ onClick, enabled, iconName }) => {
     return (
         <Button 
             onPress={onClick}   
@@ -20,4 +21,4 @@ const IconButton = ({ onClick, enabled, iconName }) => {
     )
 }
 
-export default IconButton;
+export default StyledIconButton;

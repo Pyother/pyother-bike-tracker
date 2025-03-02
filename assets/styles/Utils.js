@@ -7,6 +7,12 @@ const stylesUtils = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
+    spaceBetween: {
+        justifyContent: 'space-between'
+    },
+    flex: {
+        flex: 1
+    },
     padding15: {
         padding: constants.padding
     },
@@ -16,6 +22,9 @@ const stylesUtils = StyleSheet.create({
     subtitle: {
         fontSize: 'medium',
         fontWeight: 'bold'
+    },
+    button: {
+        backgroundColor: constants.accentPrimary
     },
     iconButton: {
         width: 'fit-content',
