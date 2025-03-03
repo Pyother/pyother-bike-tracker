@@ -17,11 +17,11 @@ const stylesUtils = StyleSheet.create({
         padding: constants.padding
     },
     title: {
-        fontSize: 'large'
+        fontSize: 18
     },
     subtitle: {
-        fontSize: 'medium',
-        fontWeight: 'bold'
+        fontSize: 14,
+        color: constants.textSecondary
     },
     button: {
         backgroundColor: constants.accentPrimary
@@ -30,6 +30,12 @@ const stylesUtils = StyleSheet.create({
         width: 'fit-content',
         backgroundColor: constants.backgroundPrimary,
     },
+    container: {
+        padding: constants.padding,
+        backgroundColor: constants.backgroundPrimary,
+        borderRadius: constants.borderRadius,
+        flex: 1
+    }
 });
 
 export default stylesUtils;

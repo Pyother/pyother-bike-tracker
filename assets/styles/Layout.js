@@ -13,7 +13,7 @@ const stylesLayout = StyleSheet.create({
     },
     stackVertical: {
         flexDirection: 'column',
-        gap: constants.padding
+        gap: constants.padding,
     },
 });
 
