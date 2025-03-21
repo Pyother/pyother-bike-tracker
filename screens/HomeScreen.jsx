@@ -1,6 +1,6 @@
 // * React and Redux:
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Platform } from 'react-native';
 
 // * Styles and UI:
 import stylesUtils from '../assets/styles/Utils';
@@ -17,23 +17,29 @@ import getData from '../services/asyncStorage/getData';
 const HomeScreen = () => {
 
     const [location, setLocation] = useState(null);
+    const [timer, setTimer] = useState(0);
 
     useEffect(() => {
-        const interval = setInterval(async () => {
-        const storedLocation = await getData('locations');
-        if (storedLocation) {
-            try {
-            // Jeśli zapisujesz obiekt jako JSON, przekształć go z powrotem
-            setLocation(JSON.parse(storedLocation));
-            } catch (e) {
-            // Jeśli to nie JSON, ustaw wartość bez parsowania
-            setLocation(storedLocation);
+        const fetchData = async () => {
+            const currentAltitude = await getData('currentAltitude');
+            const currentLatitude = await getData('currentLatitude');
+            const currentLongitude = await getData('currentLongitude');
+            if (currentAltitude && currentLatitude && currentLongitude) {
+                setLocation({
+                    altitude: JSON.parse(currentAltitude),
+                    latitude: JSON.parse(currentLatitude),
+                    longitude: JSON.parse(currentLongitude),
+                });
             }
-        }
+            setTimer(prevTimer => prevTimer + 1);
+        };
+
+        const interval = setTimeout(() => {
+            fetchData();
         }, 1000);
 
-        return () => clearInterval(interval);
-    }, []);
+        return () => clearTimeout(interval);
+    }, [timer]);
 
     return (
         <View style={[stylesLayout.screenContainer, stylesLayout.stackVertical]}>
@@ -44,10 +50,17 @@ const HomeScreen = () => {
             <StyledContainer 
                 title="Location"
                 children={<Text>
-                    {location ? JSON.stringify(location, null, 2) : 'Brak danych'}
+                    {location ? `Altitude: ${location.altitude}, Latitude: ${location.latitude}, Longitude: ${location.longitude}, Timer: ${timer}` : 'No data'}
                 </Text>}
             />
-            <StyledContainer children={<Map />}/>
+            {Platform.OS === 'web' ? (
+                <StyledContainer 
+                    title="Map"
+                    children={<Text>Map is not available on web</Text>}
+                />
+            ) : (
+                <StyledContainer children={<Map />}/>
+            )}
             <StyledContainer title="History" subtitle="List of your recent activities."/>
         </View>
     )

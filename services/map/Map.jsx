@@ -40,6 +40,7 @@ const Map = () => {
             region={location}
             style={styles.map} 
         >
+            
             <Marker coordinate={{latitude: location.latitude, longitude: location.longitude}} />
         </MapView>
     );

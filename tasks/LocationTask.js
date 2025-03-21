@@ -8,6 +8,7 @@ import storeData from '../services/asyncStorage/storeData';
 const LOCATION_TASK_NAME = 'background-location-task';
 
 const requestPermissions = async () => {
+    
     const { status: foregroundStatus } = await Location.requestForegroundPermissionsAsync();
     if (foregroundStatus !== 'granted') {
         return false;
@@ -29,7 +30,10 @@ TaskManager.defineTask(LOCATION_TASK_NAME, ({ data, error }) => {
     if (data) {
         const { locations } = data;
         console.log('locations', locations);
-        storeData('locations', locations);
+        const lastPosition = locations[locations.length - 1];
+        storeData('currentAltitude', lastPosition.coords.altitude);
+        storeData('currentLatitude', lastPosition.coords.latitude);
+        storeData('currentLongitude', lastPosition.coords.longitude);
     }
 });
 
