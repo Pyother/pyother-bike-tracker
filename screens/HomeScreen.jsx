@@ -49,19 +49,22 @@ const HomeScreen = () => {
             </View> 
             <StyledContainer 
                 title="Location"
-                children={<Text>
-                    {location ? `Altitude: ${location.altitude}, Latitude: ${location.latitude}, Longitude: ${location.longitude}, Timer: ${timer}` : 'No data'}
-                </Text>}
+                children={
+                    <Text>
+                        {location ? `Altitude: ${location.altitude}, Latitude: ${location.latitude}, Longitude: ${location.longitude}, Timer: ${timer}` : 'No data'}
+                    </Text>
+                }
             />
             {Platform.OS === 'web' ? (
                 <StyledContainer 
                     title="Map"
                     children={<Text>Map is not available on web</Text>}
+                    flex
                 />
             ) : (
-                <StyledContainer children={<Map />}/>
+                <StyledContainer children={<Map />} flex/>
             )}
-            <StyledContainer title="History" subtitle="List of your recent activities."/>
+            <StyledContainer title="History" subtitle="List of your recent activities." flex/>
         </View>
     )
 }

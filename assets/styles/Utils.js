@@ -34,7 +34,6 @@ const stylesUtils = StyleSheet.create({
         padding: constants.padding,
         backgroundColor: constants.backgroundPrimary,
         borderRadius: constants.borderRadius,
-        flex: 1
     }
 });
 
