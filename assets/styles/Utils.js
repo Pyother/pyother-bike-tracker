@@ -16,12 +16,17 @@ const stylesUtils = StyleSheet.create({
     padding15: {
         padding: constants.padding
     },
+    padding15Bottom: {
+        paddingBottom: constants.padding
+    },
     title: {
         fontSize: 18
     },
     subtitle: {
         fontSize: 14,
-        color: constants.textSecondary
+        color: constants.textSecondary,
+        textTransform: 'capitalize',
+        width: '100%'
     },
     button: {
         backgroundColor: constants.accentPrimary
@@ -34,6 +39,9 @@ const stylesUtils = StyleSheet.create({
         padding: constants.padding,
         backgroundColor: constants.backgroundPrimary,
         borderRadius: constants.borderRadius,
+    },
+    accentSecondary: {
+        color: constants.accentSecondary
     }
 });
 

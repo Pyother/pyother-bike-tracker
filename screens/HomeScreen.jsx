@@ -7,6 +7,8 @@ import stylesUtils from '../assets/styles/Utils';
 import stylesLayout from '../assets/styles/Layout';
 import StyledButton from '../components/styledComponents/StyledButton';
 import StyledContainer from '../components/styledComponents/StyledContainer';
+import StyledNumberDisplay from '../components/styledComponents/StyledNumberDisplay';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 // * Services:
 import Map from '../services/map/Map';
@@ -44,15 +46,35 @@ const HomeScreen = () => {
     return (
         <View style={[stylesLayout.screenContainer, stylesLayout.stackVertical]}>
             <View style={[stylesLayout.stackHorizontal, stylesUtils.spaceBetween]}> 
-                <StyledButton name="Start" icon="start" />
+                <StyledButton name="Start" icon="play-arrow" />
                 <StyledButton icon="stop"/>
             </View> 
             <StyledContainer 
                 title="Location"
                 children={
-                    <Text>
-                        {location ? `Altitude: ${location.altitude}, Latitude: ${location.latitude}, Longitude: ${location.longitude}, Timer: ${timer}` : 'No data'}
-                    </Text>
+                    <View style={[stylesLayout.stackHorizontal, stylesUtils.spaceBetween]}>
+                        {
+                            location ? Object.keys(location).map((key) => {
+                                return (
+                                    <StyledNumberDisplay 
+                                        key={key}
+                                        title={key}
+                                        value={location[key]}
+                                    />
+                                )
+                            }) : null
+                        }
+                    </View>
+                }
+                icon={
+                    <Ionicons name="compass-outline" size={25}/>
+                }
+            />
+            <StyledContainer 
+                title="Statistics" 
+                subtitle="(Coming soon)"
+                icon={
+                    <Ionicons name="pie-chart-outline" size={25}/>
                 }
             />
             {Platform.OS === 'web' ? (
@@ -62,9 +84,11 @@ const HomeScreen = () => {
                     flex
                 />
             ) : (
-                <StyledContainer children={<Map />} flex/>
+                <StyledContainer 
+                    children={<Map />} 
+                    flex
+                />
             )}
-            <StyledContainer title="History" subtitle="List of your recent activities." flex/>
         </View>
     )
 }
