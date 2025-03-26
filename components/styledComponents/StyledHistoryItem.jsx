@@ -7,9 +7,9 @@ import stylesUtils from '../../assets/styles/Utils';
 import stylesLayout from '../../assets/styles/Layout';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-const HistoryItem = ({ date, distance }) => {
+const HistoryItem = ({ date, distance, onPress }) => {
     return (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={onPress}>
             <View style={[stylesUtils.container]}>
                 <View style={[stylesLayout.stackHorizontal, stylesUtils.padding15Bottom]}>
                     <Ionicons name="calendar-outline" size={24} />

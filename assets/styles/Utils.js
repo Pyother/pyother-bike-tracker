@@ -40,7 +40,6 @@ const stylesUtils = StyleSheet.create({
     },
     button: {
         backgroundColor: constants.accentPrimary,
-        color: constants.textSecondary,
     },
     iconButton: {
         width: 'fit-content',

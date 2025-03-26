@@ -34,8 +34,8 @@ const App = () => {
 }
 
 const Main = () => {
-    
-    const currentScreen = useSelector(state => state.screen.screen);
+
+    const activitiesData = useSelector(state => state.activityData.activitiesArray);
 
     useEffect(() => {
         startBackgroundLocation();
@@ -58,6 +58,17 @@ const Main = () => {
                 component={HistoryScreen}
                 options={{ header: () => <Header title="History" backPressEnabled/> }}
             />
+            {
+                activitiesData.map((activity) => (
+                    <Stack.Screen
+                        key={activity.id}
+                        name={`Route_${activity.id}`}
+                        component={ItemScreen}
+                        options={{ header: () => <Header title={`Activity ${activity.id}`} backPressEnabled/> }}
+                        initialParams={{ date: activity.date, distance: activity.distance, locations: activity.locations }}
+                    />
+                ))
+            }
         </Stack.Navigator>
     );
 }

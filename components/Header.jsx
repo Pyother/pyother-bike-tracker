@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { setScreen } from '../features/navigationFeatures/ScreenSlice';
 import { View, Text, StyleSheet, Modal, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -34,7 +33,7 @@ const Header = ({ title, backPressEnabled }) => {
     return (
         <View style={styles.header}>
             <StyledIconButton 
-                onClick={() => navigation.navigate('Home')}  
+                onClick={() => navigation.goBack()}  
                 enabled={backPressEnabled}
                 iconName="arrow-back"
             />

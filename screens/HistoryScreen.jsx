@@ -1,6 +1,8 @@
 // * React and Redux:
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { View, Text } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 // * Styles:
 import stylesUtils from '../assets/styles/Utils';
@@ -11,29 +13,18 @@ import HistoryItem from '../components/styledComponents/StyledHistoryItem';
 
 const HistoryScreen = () => {
 
-    const temp = [
-        {
-            date: '2021-08-01',
-            distance: 10
-        },
-        {
-            date: '2021-08-02',
-            distance: 20
-        },
-        {
-            date: '2021-08-03',
-            distance: 30
-        }
-    ]
+    const activities = useSelector(state => state.activityData.activitiesArray);
+    const navigation = useNavigation();
 
     return (
         <View style={[stylesLayout.stackVertical, stylesUtils.padding15]}>
             {
-                temp.map((item) => (
+                activities.map((item) => (
                     <HistoryItem
-                        key={item.name}
+                        key={item.date}
                         date={item.date}
                         distance={item.distance}
+                        onPress={() => navigation.navigate('Route_' + item.id)}
                     />
                 ))
             }

@@ -1,6 +1,8 @@
 // * React and Redux:
 import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { View, Text, StyleSheet, Platform } from 'react-native';
+import { addActivity, updateDistance, stopActivity } from '../features/dataFeatures/ActivityDataSlice';
 
 // * Styles and UI:
 import stylesUtils from '../assets/styles/Utils';
@@ -18,8 +20,10 @@ import getData from '../services/asyncStorage/getData';
 
 const HomeScreen = () => {
 
+    const dispatch = useDispatch();
     const [location, setLocation] = useState(null);
     const [timer, setTimer] = useState(0);
+    const activitiesData = useSelector(state => state.activityData.activitiesArray);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -43,10 +47,37 @@ const HomeScreen = () => {
         return () => clearTimeout(interval);
     }, [timer]);
 
+    const startActivity = () => {
+
+        const date = new Date().toISOString().split('T')[0];
+        const id = activitiesData.length + 1;
+
+        dispatch(addActivity({ 
+            date, 
+            id,
+            active: true,
+            distance: 0,
+            locations: []
+        }));
+
+        setTimeout(async () => {
+            const currentLatitude = await getData('currentLatitude');
+            const currentLongitude = await getData('currentLongitude');
+            dispatch(updateDistance({
+                id,
+                distanceToAdd: 1,
+                newLocations: {
+                    latitude: JSON.parse(currentLatitude),
+                    longitude: JSON.parse(currentLongitude)
+                }
+            }));
+        }, 10000);
+    }
+
     return (
         <View style={[stylesLayout.screenContainer, stylesLayout.stackVertical]}>
             <View style={[stylesLayout.stackHorizontal, stylesUtils.spaceBetween]}> 
-                <StyledButton name="Start" icon="play-arrow" />
+                <StyledButton name="Start" icon="play-arrow" onClick={() => startActivity()} />
                 <StyledButton icon="stop"/>
             </View> 
             <StyledContainer 

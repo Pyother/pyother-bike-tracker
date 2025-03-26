@@ -10,18 +10,17 @@ import stylesUtils from '../../assets/styles/Utils';
 
 const StyledButton = ({ name, icon, onClick, enabled }) => {
     return (
-        <TouchableOpacity onPress={onClick}>
-            <View style={{ flex: 1 }}>
-                <Button 
-                    style={[stylesUtils.button]}
-                    radius={"lg"}
-                    title={name}
-                    color={constants.backgroundTertiary}
-                >
-                    { icon ? <Icon name={icon} color={constants.accentSecondary} /> : null }
-                </Button>
-            </View>
-        </TouchableOpacity>
+        <View style={{ flex: 1 }}>
+            <Button 
+                style={[stylesUtils.button]}
+                radius={"lg"}
+                title={name}
+                color={constants.backgroundTertiary}
+                onPress={onClick}
+            >
+                { icon ? <Icon name={icon} color={constants.accentSecondary} /> : null }
+            </Button>
+        </View>
     )
 }
 
