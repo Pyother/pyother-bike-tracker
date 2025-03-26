@@ -7,6 +7,18 @@ const stylesUtils = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
+    modalOverlay: {
+        flex: 1,
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    modal: {
+        backgroundColor: constants.backgroundPrimary,
+        padding: constants.padding,
+        borderRadius: constants.borderRadius,
+        width: '80%',
+    },
     spaceBetween: {
         justifyContent: 'space-between'
     },
@@ -28,8 +40,12 @@ const stylesUtils = StyleSheet.create({
         textTransform: 'capitalize',
         width: '100%'
     },
+    textSecondary: {
+        color: constants.textSecondary
+    },
     button: {
-        backgroundColor: constants.accentPrimary
+        backgroundColor: constants.accentPrimary,
+        color: constants.textSecondary,
     },
     iconButton: {
         width: 'fit-content',
