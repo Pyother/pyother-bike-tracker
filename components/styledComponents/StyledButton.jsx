@@ -1,6 +1,6 @@
 // * React: 
 import React from 'react';
-import { View } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 
 // * Styles and UI:
 import { Button, Icon } from '@rneui/themed';
@@ -10,16 +10,18 @@ import stylesUtils from '../../assets/styles/Utils';
 
 const StyledButton = ({ name, icon, onClick, enabled }) => {
     return (
-        <View style={{ flex: 1 }}>
-            <Button 
-                style={[stylesUtils.button]}
-                radius={"lg"}
-                title={name}
-                color={constants.backgroundTertiary}
-            >
-                { icon ? <Icon name={icon} color={constants.accentSecondary} /> : null }
-            </Button>
-        </View>
+        <TouchableOpacity onPress={onClick}>
+            <View style={{ flex: 1 }}>
+                <Button 
+                    style={[stylesUtils.button]}
+                    radius={"lg"}
+                    title={name}
+                    color={constants.backgroundTertiary}
+                >
+                    { icon ? <Icon name={icon} color={constants.accentSecondary} /> : null }
+                </Button>
+            </View>
+        </TouchableOpacity>
     )
 }
 
